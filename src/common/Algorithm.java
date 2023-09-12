@@ -4,13 +4,12 @@
  */
 package common;
 
-/**
- *
- * @author GoldCandy
- */
+import common.Library;
+
 public class Algorithm {
-    public void bubbleSort(int[] array){
-    for (int i = 0; i < array.length; i++) {
+
+    public void bubbleSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length - i - 1; j++) {
                 if (array[j] > array[j + 1]) {
                     int tmp = array[j + 1];
@@ -18,15 +17,12 @@ public class Algorithm {
                     array[j] = tmp;
                 }
             }
+        }
     }
-    }
+
     public int partition(int[] array, int left, int right) {
-        //exam: 1 12 5 [7] 6 9 2 : 7 is pivot
-        //Run from left: i - Run from right: j
         int i = left, j = right;
-        //Instance a variable: pivot - trục
         int pivot = array[(left + right) / 2];
-        //Create a temp variable
         int tmp;
         while (i <= j) {
             while (array[i] < pivot) {
@@ -36,7 +32,6 @@ public class Algorithm {
                 j--;
             }
             if (i <= j) {
-                //Execute swap between value of index [i] and value of index [j]
                 tmp = array[i];
                 array[i] = array[j];
                 array[j] = tmp;
@@ -46,7 +41,8 @@ public class Algorithm {
         }
         return i;
     }
-    public void quickSort(int[] array, int left, int right){
+
+    public void quickSort(int[] array, int left, int right) {
         int index = partition(array, left, right);
         if (left < index - 1) {
             quickSort(array, left, index - 1);
@@ -54,5 +50,34 @@ public class Algorithm {
         if (index < right) {
             quickSort(array, index, right);
         }
+    }
+
+    public int linearSearch(int[] array, int value) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int binarySearch(int[] array, int size, int value) {
+        quickSort(array, 0, size - 1);
+        Library lib = new Library();
+        lib.display(array);
+        int left = 0;
+        int right = size - 1;
+        while (left <= right) {
+            int mid = left + (right - left)/2;
+            if (array[mid] == value) {
+                return mid;
+            }
+            if (array[mid] > value) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return -1;
     }
 }

@@ -1,6 +1,6 @@
 import common.Library;
 import model.Element;
-import controller.SortProgramming;
+import controller.Programming;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,6 +8,6 @@ public class Main {
         Element element = new Element();
         element.setSize_array(library.getInt("Enter number of array 1..100", 1, 100));
         element.setArray(library.createArray(element.getSize_array()));
-        new SortProgramming(element).run();
+        new Programming(element).run();
     }
 }
